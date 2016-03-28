@@ -240,7 +240,7 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, pa
   end
 end
 
-Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label, parent|
+Then /^the "([^']*)" checkbox(?: within (.*))? should not be checked$/ do |label, parent|
   with_scope(parent) do
     field_checked = find_field(label)['checked']
     if field_checked.respond_to? :should
@@ -275,4 +275,24 @@ end
 
 Then /^show me the page$/ do
   save_and_open_page
+end
+
+Given /^that I am on the admin dashboard$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I click on "(.*?)" in the sidebar$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I fill in new Category information$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I click on "(.*?)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^my new Category should be listed$/ do
+  pending # express the regexp above with the code you wish you had
 end
