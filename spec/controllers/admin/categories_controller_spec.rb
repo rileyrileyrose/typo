@@ -16,16 +16,11 @@ describe Admin::CategoriesController do
     assert_response :redirect, :action => 'index'
   end
 
-  describe "test_new" do
-    before(:each) do
-      get :new
-    end
-
-    it 'should render template new' do
-      assert_template 'new'
-      assert_tag :tag => "table",
-        :attributes => { :id => "category_container" }
-    end
+  it "test_new" do
+    get :new
+    assert_template 'new'
+    assert_tag :tag => "table",
+      :attributes => { :id => "category_container" }
   end
 
   describe "test_edit" do
