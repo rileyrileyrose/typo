@@ -11,8 +11,10 @@ Feature: Create Category
     Given I am on the admin dashboard
     When I follow "Categories"
     Then I should be on the new category page
-    When I fill in new Category information
+    When I fill in "category_name" with "Cool Things"
+    Then the "category_name" field should contain "Cool Things"
+    Then show me the page
     And I press "Save"
-    Then I should be on admin_dashboard_path
-    When I press "Categories"
+    Then I should be on the admin dashboard
+    When I follow "Categories"
     And my new Category should be listed

@@ -281,18 +281,6 @@ Given /^that I am on the admin dashboard$/ do
   visit '/admin'
 end
 
-When /^I press "(.*?)" in the sidebar$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-When /^I fill in new Category information$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-When /^I click on "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
 When /^my new Category should be listed$/ do
   pending # express the regexp above with the code you wish you had
 end
