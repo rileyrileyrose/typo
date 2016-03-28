@@ -23,4 +23,3 @@ Feature: Create Category
    Then I should be on the new category page
    And I should see "Most Gens"
    And I should not see "General"
-   Then show me the page
