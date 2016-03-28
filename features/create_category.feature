@@ -17,4 +17,10 @@ Feature: Create Category
     And I should see "Cool Things"
 
   Scenario: Successfully edit a Category
-   
+   When I go to the general category
+   When I fill in "category_name" with "Most Gens"
+   And I press "Save"
+   Then I should be on the new category page
+   And I should see "Most Gens"
+   And I should not see "General"
+   Then show me the page
