@@ -277,10 +277,11 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
-Given /^that I am on the admin dashboard$/ do
-  visit '/admin'
+When /^I click on a category$/ do
+  with_scope(table)
+  
 end
 
-When /^my new Category should be listed$/ do
+Then /^I should not see the original category name$/ do
   pending # express the regexp above with the code you wish you had
 end
