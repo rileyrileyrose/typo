@@ -8,11 +8,11 @@ Feature: Create Category
     And I am logged into the admin panel
 
   Scenario: Successfully create Categories
-    Given that I am on the admin dashboard
-    When I click on "Categories" in the sidebar
-    Then I should be on the new Category page
+    Given I am on the admin dashboard
+    When I follow "Categories"
+    Then I should be on the new category page
     When I fill in new Category information
     And I press "Save"
-    Then I should be on the admin panel
-    When I click on "Categories"
+    Then I should be on admin_dashboard_path
+    When I press "Categories"
     And my new Category should be listed

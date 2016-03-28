@@ -278,10 +278,10 @@ Then /^show me the page$/ do
 end
 
 Given /^that I am on the admin dashboard$/ do
-  pending # express the regexp above with the code you wish you had
+  visit '/admin'
 end
 
-When /^I click on "(.*?)" in the sidebar$/ do |arg1|
+When /^I press "(.*?)" in the sidebar$/ do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 
