@@ -1,6 +1,7 @@
 # coding: utf-8
 require 'uri'
 require 'net/http'
+require 'pry'
 
 class Article < Content
   include TypoGuid
@@ -421,6 +422,7 @@ class Article < Content
     if merge_art
       self.body += merge_art.body
       self.comments += merge_art.comments
+      self.save
       merge_art.delete
       return self
     else
