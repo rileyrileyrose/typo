@@ -100,6 +100,13 @@ class ArticlesController < ContentController
     render "errors/404", :status => 404
   end
 
+  def merge
+    art = Article.find(params[:id])
+    merge_id = params[:merge_id]
+    art.merge_with(merge_id)
+    redirect_to '/admin/content'
+  end
+
 
   ### Deprecated Actions ###
 
