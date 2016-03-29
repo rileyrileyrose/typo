@@ -277,11 +277,10 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
-When /^I click on a category$/ do
-  with_scope(table)
-  
+Given /^I log in as a non\-admin user$/ do
+  pending # express the regexp above with the code you wish you had
 end
 
-Then /^I should not see the original category name$/ do
+Given /^I publish a post$/ do
   pending # express the regexp above with the code you wish you had
 end

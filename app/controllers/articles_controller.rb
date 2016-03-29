@@ -103,8 +103,13 @@ class ArticlesController < ContentController
   def merge
     art = Article.find(params[:id])
     merge_id = params[:merge_id]
-    art.merge_with(merge_id)
-    redirect_to '/admin/content'
+    merged = art.merge_with(merge_id)
+    if merged
+      redirect_to '/admin/content'
+    else
+      redirect_to :back
+      flash[:error] = "Something went wrong. Please try again."
+    end
   end
 
 

@@ -418,15 +418,15 @@ class Article < Content
   end
 
   def merge_with(merge_id)
-    merge_art = Article.find(merge_id)
-    if merge_art
+    begin
+      merge_art = Article.find(merge_id)
       self.body += merge_art.body
       self.comments += merge_art.comments
       self.save
       merge_art.delete
-      return self
-    else
-      return "You entered an incorrect ID."
+      return true
+    rescue
+      return false
     end
   end
 
