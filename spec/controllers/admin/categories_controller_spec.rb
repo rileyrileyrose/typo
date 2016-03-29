@@ -41,9 +41,11 @@ describe Admin::CategoriesController do
     end
   end
 
-  it "test_update" do
-    post :edit, :id => Factory(:category).id
-    assert_response :redirect, :action => 'index'
+  describe "test_update" do
+    it "redirects to the index" do
+      post :edit, :id => Factory(:category).id
+      assert_response :redirect, :action => 'index'
+    end
   end
 
   describe "test_destroy with GET" do
