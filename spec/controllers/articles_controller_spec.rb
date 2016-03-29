@@ -217,6 +217,21 @@ describe ArticlesController do
     end
   end
 
+  describe "merges"  do
+    before each do
+      a1 = Factory.create(:article, :title => "hello", :body => "hello world")
+      a2 = Factory.create(:article, :title => "world", :body => "words are good")
+      post: 'merge', :id => a1.id, :merge_id => a2.id
+    end
+    it 'redirects to articles index path' do
+      response.should redirect_to(admin_articles_path)
+    end
+    it 'combines two articles into one' do
+      
+    end
+
+  end
+
 end
 
 describe ArticlesController, "nosettings" do
