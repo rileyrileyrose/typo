@@ -23,3 +23,8 @@ Feature: Create Category
    Then I should be on the new category page
    And I should see "Best Category"
    And I should not see "General"
+
+   Scenario: Unsuccessfuly create a Category
+    And I press "Save"
+    Then I should be on the new category page
+    And I should see "Category could not be saved"
