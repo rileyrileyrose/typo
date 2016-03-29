@@ -1,3 +1,5 @@
+require 'pry'
+
 class ArticlesController < ContentController
   before_filter :login_required, :only => [:preview]
   before_filter :auto_discovery_feed, :only => [:show, :index]
@@ -101,14 +103,19 @@ class ArticlesController < ContentController
   end
 
   def merge
-    art = Article.find(params[:id])
-    merge_id = params[:merge_id]
-    merged = art.merge_with(merge_id)
-    if merged
-      redirect_to '/admin/content'
+    if User.find(session[:user_id]).admin?
+      art = Article.find(params[:id])
+      merge_id = params[:merge_id]
+      merged = art.merge_with(merge_id)
+      if merged
+        redirect_to '/admin/content'
+      else
+        redirect_to :back
+        flash[:error] = "Something went wrong. Please try again."
+      end
     else
       redirect_to :back
-      flash[:error] = "Something went wrong. Please try again."
+      flash[:error] = "You do not have permission to do this."
     end
   end
 

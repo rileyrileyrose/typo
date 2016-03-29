@@ -6,7 +6,7 @@ describe ArticlesController do
 
   before(:each) do
     #TODO Need to reduce user, but allow to remove user fixture...
-    Factory(:user,
+    @user = Factory(:user,
             :login => 'henri',
             :password => 'whatever',
             :name => 'Henri',
@@ -219,12 +219,22 @@ describe ArticlesController do
 
   describe "merges"  do
     before :each do
-      a1 = Factory.create(:article, :title => "hello", :body => "hello world")
-      a2 = Factory.create(:article, :title => "world", :body => "words are good")
-      post 'merge', :id => a1.id, :merge_id => a2.id
+      @a1 = Factory.create(:article, :title => "hello", :body => "hello world")
+      @a2 = Factory.create(:article, :title => "world", :body => "words are good")
     end
+
     it 'redirects to articles index path' do
+      session[:user_id] = @user.id
+      post 'merge', :id => @a1.id, :merge_id => @a2.id
       response.should redirect_to(admin_content_path)
+    end
+
+    it "doesn't let a non-admin user submit a merge" do
+      request.env["HTTP_REFERER"] = "back"
+      user = Factory(:user, :profile => Factory(:profile_publisher))
+      session[:user_id] = user.id
+      post 'merge', :id => @a1.id, :merge_id => @a2.id
+      response.should redirect_to("back")
     end
 
   end
