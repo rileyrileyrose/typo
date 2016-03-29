@@ -1,7 +1,6 @@
 # coding: utf-8
 require 'uri'
 require 'net/http'
-require 'pry'
 
 class Article < Content
   include TypoGuid

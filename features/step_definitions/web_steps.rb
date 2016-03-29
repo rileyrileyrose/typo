@@ -41,6 +41,12 @@ Given /^the blog is set up$/ do
                 :profile_id => 1,
                 :name => 'admin',
                 :state => 'active'})
+  User.create!({:login => 'user',
+                :password => 'bbbbbbbb',
+                :email => 'user@snow.com',
+                :profile_id => 2,
+                :name => 'user',
+                :state => 'active'})
 end
 
 And /^I am logged into the admin panel$/ do
@@ -278,9 +284,29 @@ Then /^show me the page$/ do
 end
 
 Given /^I log in as a non\-admin user$/ do
-  pending # express the regexp above with the code you wish you had
+  visit '/accounts/login'
+  fill_in 'user_login', :with => 'user'
+  fill_in 'user_password', :with => 'bbbbbbbb'
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content('Login successful')
+  else
+    assert page.has_content?('Login successful')
+  end
 end
 
 Given /^I publish a post$/ do
-  pending # express the regexp above with the code you wish you had
+  visit'/admin/content'
+  click_link "New Article"
+  fill_in "article_title", :with => "Things are Funny"
+  click_button "Publish"
+end
+
+When /^I edit an article$/ do
+  visit'/admin/content'
+  click_link "Hello World!"
+end
+
+When /^I click submit$/ do
+  page.find('#submit_merge').click
 end
