@@ -2,7 +2,7 @@
 
 <%= render "admin/shared/edit", { :form_type => "article", :form_action => { :action => "new", :id => @article.id , :class => ('autosave')} } %>
 
-<% if params[:id] %>
+<% if params[:id] && @current_user.admin? %>
   <%= form_tag merge_path(id: params[:id]) do %>
     <h4><%= _("Merge") %></h4>
     <div class='class'>
