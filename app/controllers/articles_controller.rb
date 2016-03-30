@@ -108,12 +108,12 @@ class ArticlesController < ContentController
       if merged
         redirect_to '/admin/content'
       else
-        redirect_to :back
         flash[:error] = "Something went wrong. Please try again."
+        redirect_to :back
       end
     else
-      redirect_to :back
       flash[:error] = "You do not have permission to do this."
+      redirect_to :back
     end
   end
 

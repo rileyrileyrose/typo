@@ -419,11 +419,13 @@ class Article < Content
   def merge_with(merge_id)
     begin
       merge_art = Article.find(merge_id)
-      self.body += merge_art.body
-      self.comments += merge_art.comments
-      self.save
-      merge_art.delete
-      return true
+      self.transaction do
+        self.body += merge_art.body
+        self.comments += merge_art.comments
+        self.save
+        merge_art.delete
+        return true
+      end
     rescue
       return false
     end

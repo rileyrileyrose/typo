@@ -227,6 +227,7 @@ describe ArticlesController do
       session[:user_id] = @user.id
       post 'merge', :id => @a1.id, :merge_id => @a2.id
       response.should redirect_to(admin_content_path)
+      response.status.should eq(200)
     end
 
     it "doesn't let a non-admin user submit a merge" do

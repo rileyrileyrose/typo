@@ -658,6 +658,7 @@ describe Article do
     it "keeps all comments from both articles" do
       @a1.merge_with(@a2.id)
       expect(@a1.comments.length).to eq(3)
+      expect(Comment.where(article_id: @a2.id).length).to eq(0)
     end
   end
 end
