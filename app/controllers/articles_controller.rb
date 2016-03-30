@@ -1,5 +1,3 @@
-require 'pry'
-
 class ArticlesController < ContentController
   before_filter :login_required, :only => [:preview]
   before_filter :auto_discovery_feed, :only => [:show, :index]
