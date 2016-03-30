@@ -416,7 +416,7 @@ class Article < Content
     user.admin? || user_id == user.id
   end
 
-  def merge_with(merge_id)
+  def successful_merge_with?(merge_id)
     begin
       merge_art = Article.find(merge_id)
       self.transaction do

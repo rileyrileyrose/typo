@@ -631,7 +631,7 @@ describe Article do
 
   end
 
-  describe "merge_with(merge_id)" do
+  describe "successful_merge_with?(merge_id)" do
     before :each do
       @a1 = Factory.create(:article, :title => "Hello", :body => "I love you, won't you tell me your name.")
       @a2 = Factory.create(:article, :title => "World", :body => "beautiful people everywhere")
@@ -640,23 +640,23 @@ describe Article do
       Factory.create(:comment, :article => @a2)
     end
     it "returns false if the merge_id is not for a valid article" do
-      expect(@a1.merge_with(3)).to eq(false)
+      expect(@a1.successful_merge_with?(3)).to eq(false)
     end
     it "returns true if merge is successful" do
-      expect(@a1.merge_with(@a2.id)).to eq(true)
+      expect(@a1.successful_merge_with?(@a2.id)).to eq(true)
     end
     it "keeps body text from both articles" do
-      @a1.merge_with(@a2.id)
+      @a1.successful_merge_with?(@a2.id)
       expect(@a1.body).to include("beautiful people everywhere")
     end
     it "keeps title and author from article on which method is called" do
       auth = @a1.author
-      @a1.merge_with(@a2.id)
+      @a1.successful_merge_with?(@a2.id)
       expect(@a1.title).to eq("Hello")
       expect(@a1.author).to eq(auth)
     end
     it "keeps all comments from both articles" do
-      @a1.merge_with(@a2.id)
+      @a1.successful_merge_with?(@a2.id)
       expect(@a1.comments.length).to eq(3)
       expect(Comment.where(article_id: @a2.id).length).to eq(0)
     end

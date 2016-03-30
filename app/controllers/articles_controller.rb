@@ -104,7 +104,7 @@ class ArticlesController < ContentController
     if User.find(session[:user_id]).admin?
       art = Article.find(params[:id])
       merge_id = params[:merge_id]
-      merged = art.merge_with(merge_id)
+      merged = art.successful_merge_with?(merge_id)
       if merged
         redirect_to '/admin/content'
       else
